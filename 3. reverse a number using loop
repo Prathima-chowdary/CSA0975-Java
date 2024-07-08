@@ -1,0 +1,16 @@
+import java.util.Scanner;
+public class  reverseanumberusingloop{
+    public static void main(String[] args) {
+        int n, rem, re=0;
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter the number: ");
+        n=sc.nextInt();
+        while(n!=0)
+        {
+            rem=n%10;
+            re=re*10+rem;
+            n=n/10;
+        }
+        System.out.println("The reversed number is: "+re);
+    }
+}
