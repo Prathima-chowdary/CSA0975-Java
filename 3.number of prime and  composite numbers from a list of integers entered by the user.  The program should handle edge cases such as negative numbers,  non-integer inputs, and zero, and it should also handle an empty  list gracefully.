@@ -1,0 +1,69 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class PrimeCompositeCounter {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Integer> numbers = new ArrayList<>();
+
+        System.out.println("Enter integers (type 'done' to finish):");
+
+        while (true) {
+            String input = scanner.nextLine();
+            if (input.equalsIgnoreCase("done")) {
+                break;
+            }
+            try {
+                int number = Integer.parseInt(input);
+                numbers.add(number);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter an integer or 'done' to finish.");
+            }
+        }
+
+        if (numbers.isEmpty()) {
+            System.out.println("No numbers entered.");
+            return;
+        }
+
+        int primeCount = 0;
+        int compositeCount = 0;
+
+        for (int number : numbers) {
+            if (isPrime(number)) {
+                primeCount++;
+            } else if (isComposite(number)) {
+                compositeCount++;
+            }
+        }
+
+        System.out.println("Prime count: " + primeCount);
+        System.out.println("Composite count: " + compositeCount);
+    }
+
+    public static boolean isPrime(int number) {
+        if (number <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isComposite(int number) {
+        if (number <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
